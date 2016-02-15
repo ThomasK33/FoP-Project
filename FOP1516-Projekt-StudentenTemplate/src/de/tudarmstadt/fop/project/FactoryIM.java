@@ -10,6 +10,9 @@ import de.tudarmstadt.fop.project.arithmetic.ArithmeticParser;
 import de.tudarmstadt.fop.project.arithmetic.CustomArithmeticOperand;
 import de.tudarmstadt.fop.project.arithmetic.CustomArithmeticParser;
 import de.tudarmstadt.fop.project.arithmetic.CustomCompoundArithmeticOperand;
+import de.tudarmstadt.fop.project.arithmetic.CustomDecimalArithmeticOperand;
+import de.tudarmstadt.fop.project.arithmetic.CustomDecimalArithmeticParser;
+import de.tudarmstadt.fop.project.arithmetic.DecimalArithmeticLexer;
 import de.tudarmstadt.fop.project.bracket.BracketParser;
 import de.tudarmstadt.fop.project.expression.ExpressionParser;
 import de.tudarmstadt.fop.project.parser.BracketLexer;
@@ -104,8 +107,7 @@ public class FactoryIM implements Factory
 	@Override
 	public ArithmeticOperand instantiateDecimalOperand(DecimalToken token)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new CustomDecimalArithmeticOperand(token);
 	}
 
 	/* (non-Javadoc)
@@ -114,8 +116,7 @@ public class FactoryIM implements Factory
 	@Override
 	public Lexer instantiateDecimalArithmeticLexer(String input)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new DecimalArithmeticLexer(input);
 	}
 
 	/* (non-Javadoc)
@@ -124,8 +125,7 @@ public class FactoryIM implements Factory
 	@Override
 	public ArithmeticParser instantiateDecimalArithmeticParser(Lexer lexer)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new CustomDecimalArithmeticParser(lexer);
 	}
 
 	/* (non-Javadoc)

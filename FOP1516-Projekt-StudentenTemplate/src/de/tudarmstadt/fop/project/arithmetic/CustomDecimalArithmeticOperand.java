@@ -5,22 +5,21 @@ package de.tudarmstadt.fop.project.arithmetic;
 
 import java.math.BigDecimal;
 
-import de.tudarmstadt.fop.project.arithmetic.ArithmeticOperand;
-import de.tudarmstadt.fop.project.parser.tokens.IntegerToken;
+import de.tudarmstadt.fop.project.parser.tokens.DecimalToken;
 
 /**
  * @author Thomas Kosiewski
  *
  */
-public class CustomArithmeticOperand implements ArithmeticOperand
+public class CustomDecimalArithmeticOperand implements ArithmeticOperand
 {
-	private IntegerToken token;
+	private DecimalToken token;
 
 	// TODO: docs
 	/**
 	 * 
 	 */
-	public CustomArithmeticOperand(IntegerToken token)
+	public CustomDecimalArithmeticOperand(DecimalToken token)
 	{
 		this.token = token;
 	}

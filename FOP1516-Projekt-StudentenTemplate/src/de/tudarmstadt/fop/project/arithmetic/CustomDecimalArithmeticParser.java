@@ -6,9 +6,8 @@ package de.tudarmstadt.fop.project.arithmetic;
 import de.tudarmstadt.fop.project.parser.Lexer;
 import de.tudarmstadt.fop.project.parser.ParseException;
 import de.tudarmstadt.fop.project.parser.Parser;
-import de.tudarmstadt.fop.project.parser.Token;
 import de.tudarmstadt.fop.project.parser.tokens.ArithmeticOperatorToken;
-import de.tudarmstadt.fop.project.parser.tokens.EofToken;
+import de.tudarmstadt.fop.project.parser.tokens.DecimalToken;
 import de.tudarmstadt.fop.project.parser.tokens.IntegerToken;
 import de.tudarmstadt.fop.project.parser.tokens.LeftBracketToken;
 import de.tudarmstadt.fop.project.parser.tokens.RightBracketToken;
@@ -17,13 +16,13 @@ import de.tudarmstadt.fop.project.parser.tokens.RightBracketToken;
  * @author Thomas Kosiewski
  *
  */
-public class CustomArithmeticParser extends Parser implements ArithmeticParser
+public class CustomDecimalArithmeticParser extends Parser implements ArithmeticParser
 {
 
 	/**
 	 * @param lexer
 	 */
-	public CustomArithmeticParser(Lexer lexer)
+	public CustomDecimalArithmeticParser(Lexer lexer)
 	{
 		super(lexer);
 	}
@@ -48,33 +47,33 @@ public class CustomArithmeticParser extends Parser implements ArithmeticParser
 			if (this.la.is(ArithmeticOperatorToken.class))
 			{
 				operator = (ArithmeticOperatorToken) this.la;
-				
+
 				this.consume();
-				
+
 				if (this.la.is(LeftBracketToken.class))
 				{
 					left = new CustomCompoundArithmeticOperand(this.getExpression());
 				}
-				
-				if (this.la.is(IntegerToken.class))
+
+				if (this.la.is(DecimalToken.class))
 				{
-					left = new CustomArithmeticOperand((IntegerToken) this.la);
+					left = new CustomDecimalArithmeticOperand((DecimalToken)this.la);
 				}
-				
+
 				this.consume();
-				
+
 				if (this.la.is(LeftBracketToken.class))
 				{
 					right = new CustomCompoundArithmeticOperand(this.getExpression());
 				}
-				
-				if (this.la.is(IntegerToken.class))
+
+				if (this.la.is(DecimalToken.class))
 				{
-					right = new CustomArithmeticOperand((IntegerToken) this.la);
+					right = new CustomDecimalArithmeticOperand((DecimalToken) this.la);
 				}
-				
+
 				this.consume();
-				
+
 				if (this.la.isNot(RightBracketToken.class))
 				{
 					throw new ParseException("Expected token )");
