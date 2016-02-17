@@ -42,7 +42,6 @@ public class CustomDecimalArithmeticParser extends Parser implements ArithmeticP
 
 		if (this.la.is(LeftBracketToken.class))
 		{
-			// new expression
 			this.consume();
 			if (this.la.is(ArithmeticOperatorToken.class))
 			{

@@ -14,6 +14,8 @@ import de.tudarmstadt.fop.project.arithmetic.CustomDecimalArithmeticOperand;
 import de.tudarmstadt.fop.project.arithmetic.CustomDecimalArithmeticParser;
 import de.tudarmstadt.fop.project.arithmetic.DecimalArithmeticLexer;
 import de.tudarmstadt.fop.project.bracket.BracketParser;
+import de.tudarmstadt.fop.project.expression.CustomExpressionParser;
+import de.tudarmstadt.fop.project.expression.ExpressionLexer;
 import de.tudarmstadt.fop.project.expression.ExpressionParser;
 import de.tudarmstadt.fop.project.parser.BracketLexer;
 import de.tudarmstadt.fop.project.parser.BracketWithWsLexer;
@@ -30,13 +32,11 @@ import de.tudarmstadt.fop.project.soccer.parser.SoccerParser;
 public class FactoryIM implements Factory
 {
 
+	// TODO: docs
 	/**
 	 * 
 	 */
-	public FactoryIM()
-	{
-		// TODO Auto-generated constructor stub
-	}
+	public FactoryIM(){}
 
 	/* (non-Javadoc)
 	 * @see de.tudarmstadt.fop.project.Factory#instantiateBracketLexer(java.lang.String)
@@ -134,8 +134,7 @@ public class FactoryIM implements Factory
 	@Override
 	public Lexer instantiateExpressionLexer(String input)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new ExpressionLexer(input);
 	}
 
 	/* (non-Javadoc)
@@ -144,8 +143,7 @@ public class FactoryIM implements Factory
 	@Override
 	public ExpressionParser instantiateExpressionParser(Lexer lexer)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new CustomExpressionParser(lexer);
 	}
 
 	/* (non-Javadoc)

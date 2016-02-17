@@ -40,10 +40,8 @@ public class BracketLexer extends Lexer
 			token = new RightBracketToken();
 		else if (this.la == Lexer.EOF)
 			token = new EofToken();
-		else 
-		{
+		else
 			throw new ParseException("Unknown token: " + this.la);
-		}
 		
 		this.consume();
 		

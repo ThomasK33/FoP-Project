@@ -3,13 +3,11 @@
  */
 package de.tudarmstadt.fop.project.arithmetic;
 
-import de.tudarmstadt.fop.project.parser.Lexer;
 import de.tudarmstadt.fop.project.parser.LookaheadLexer;
 import de.tudarmstadt.fop.project.parser.ParseException;
 import de.tudarmstadt.fop.project.parser.Token;
 import de.tudarmstadt.fop.project.parser.tokens.ArithmeticOperatorToken;
 import de.tudarmstadt.fop.project.parser.tokens.DecimalToken;
-import de.tudarmstadt.fop.project.parser.tokens.IntegerToken;
 
 /**
  * @author Thomas Kosiewski
