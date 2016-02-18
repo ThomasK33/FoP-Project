@@ -8,7 +8,6 @@ import de.tudarmstadt.fop.project.parser.ParseException;
 import de.tudarmstadt.fop.project.parser.Parser;
 import de.tudarmstadt.fop.project.parser.tokens.ArithmeticOperatorToken;
 import de.tudarmstadt.fop.project.parser.tokens.DecimalToken;
-import de.tudarmstadt.fop.project.parser.tokens.IntegerToken;
 import de.tudarmstadt.fop.project.parser.tokens.LeftBracketToken;
 import de.tudarmstadt.fop.project.parser.tokens.RightBracketToken;
 

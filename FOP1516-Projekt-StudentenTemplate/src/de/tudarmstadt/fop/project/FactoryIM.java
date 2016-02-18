@@ -24,6 +24,7 @@ import de.tudarmstadt.fop.project.parser.Lexer;
 import de.tudarmstadt.fop.project.parser.tokens.DecimalToken;
 import de.tudarmstadt.fop.project.parser.tokens.IntegerToken;
 import de.tudarmstadt.fop.project.soccer.parser.SoccerParser;
+import de.tudarmstadt.fop.project.soccer.praser.CustomSoccerParser;
 
 /**
  * @author Thomas Kosiewski
@@ -152,8 +153,7 @@ public class FactoryIM implements Factory
 	@Override
 	public SoccerParser instantiateSoccerParser(Lexer lexer)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new CustomSoccerParser(lexer);
 	}
 
 }

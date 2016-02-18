@@ -3,7 +3,6 @@
  */
 package de.tudarmstadt.fop.project.expression;
 
-import de.tudarmstadt.fop.project.arithmetic.CustomDecimalArithmeticOperand;
 import de.tudarmstadt.fop.project.parser.Lexer;
 import de.tudarmstadt.fop.project.parser.ParseException;
 import de.tudarmstadt.fop.project.parser.Parser;
