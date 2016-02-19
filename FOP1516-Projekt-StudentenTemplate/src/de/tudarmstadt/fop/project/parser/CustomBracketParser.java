@@ -54,7 +54,7 @@ public class CustomBracketParser extends Parser implements BracketParser
 			}
 		} while(lexer.hasNext());
 		
-		return true;
+		return counter == 0;
 	}
 
 }
