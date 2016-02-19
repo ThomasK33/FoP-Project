@@ -17,11 +17,11 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
  * @author Thomas Kosiewski
  *
  */
-public class BracketWithWsTest
+public class BracketWithWsTest extends TemplateBracketWithWsTest
 {
 
 	@Test
-	public void templateTestLexerValidWithBlanks() throws ParseException{
+	public void templateTestLexerValidWithBlanks2() throws ParseException{
 		String input = "(  ( (  )  )    )  ";
 
 		Factory factory = InstanceGenerator.instantiateFactory();
@@ -44,7 +44,7 @@ public class BracketWithWsTest
 	}
 	
 	@Test
-	public void templateTestLexerValidWithWhitespace() throws ParseException{
+	public void templateTestLexerValidWithWhitespace2() throws ParseException{
 		String input = "(\r\n( (\t  )  )\r\n\r\n  ) ";
 
 		Factory factory = InstanceGenerator.instantiateFactory();

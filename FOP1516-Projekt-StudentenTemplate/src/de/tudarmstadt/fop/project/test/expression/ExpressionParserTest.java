@@ -17,11 +17,11 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
  * @author Thomas Kosiewski
  *
  */
-public class ExpressionParserTest
+public class ExpressionParserTest extends TemplateExpressionParserTest
 {
 
 	@Test
-	public void templateTestSimpleFunctionApplication() throws ParseException{
+	public void templateTestSimpleFunctionApplication2() throws ParseException{
 		String input = "(f (a \"$%&/() FoP\" 2.5) y)";
 
 		Factory factory = InstanceGenerator.instantiateFactory();
@@ -35,7 +35,7 @@ public class ExpressionParserTest
 	}
 
 	@Test
-	public void templateTestBasicSchemeParser() throws ParseException{
+	public void templateTestBasicSchemeParser2() throws ParseException{
 		String input = "(foo \"abc\" 1.23)";
 
 		Factory factory = InstanceGenerator.instantiateFactory();

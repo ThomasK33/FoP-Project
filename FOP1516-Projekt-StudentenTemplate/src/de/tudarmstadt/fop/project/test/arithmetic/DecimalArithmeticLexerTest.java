@@ -20,11 +20,11 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
  * @author Thomas Kosiewski
  *
  */
-public class DecimalArithmeticLexerTest
+public class DecimalArithmeticLexerTest extends TemplateDecimalArithmeticLexerTest
 {
 
 	@Test
-	public void templateTestLexerValidSimpleMultiply() throws ParseException{
+	public void templateTestLexerValidSimpleMultiply2() throws ParseException{
 		String input = "(5.5 * 2)";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateDecimalArithmeticLexer(input);
@@ -44,7 +44,7 @@ public class DecimalArithmeticLexerTest
 	}
 	
 	@Test
-	public void templateTestLexerValidSimpleSubtraktion() throws ParseException{
+	public void templateTestLexerValidSimpleSubtraktion2() throws ParseException{
 		String input = "10 - -2";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateDecimalArithmeticLexer(input);

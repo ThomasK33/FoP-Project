@@ -20,11 +20,11 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
  * @author Thomas Kosiewski
  *
  */
-public class ExpressionLexerTest
+public class ExpressionLexerTest extends TemplateExpressionLexerTest
 {
 
 	@Test
-	public void templateTestBasicSchemeLexer() throws ParseException{
+	public void templateTestBasicSchemeLexer2() throws ParseException{
 		String input = "(qwertz \"asdf\" 13.37 (h4x0r l33t))";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateExpressionLexer(input);

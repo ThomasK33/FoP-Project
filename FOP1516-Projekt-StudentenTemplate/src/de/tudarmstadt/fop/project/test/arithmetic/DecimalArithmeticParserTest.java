@@ -18,11 +18,11 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
  * @author Thomas Kosiewski
  *
  */
-public class DecimalArithmeticParserTest
+public class DecimalArithmeticParserTest extends TemplateDecimalArithmeticParserTest
 {
 
 	@Test
-	public void templateTestSimpleExpressionNegativeNumber() throws ParseException{
+	public void templateTestSimpleExpressionNegativeNumber2() throws ParseException{
 		String input = "(* -10 -2)";
 		
 		Factory factory = InstanceGenerator.instantiateFactory();
@@ -33,7 +33,7 @@ public class DecimalArithmeticParserTest
 	}
 	
 	@Test
-	public void templateTestSimpleExpressionNegativeAndFloatingPoint() throws ParseException{
+	public void templateTestSimpleExpressionNegativeAndFloatingPoint2() throws ParseException{
 		String input = "(- -5 (* 20.5  -1))";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateDecimalArithmeticLexer(input);

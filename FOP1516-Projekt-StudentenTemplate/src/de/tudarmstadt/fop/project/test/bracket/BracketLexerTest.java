@@ -18,10 +18,10 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
  * @author Thomas Kosiewski
  *
  */
-public class BracketLexerTest
+public class BracketLexerTest extends TemplateBracketLexerTest
 {
 	@Test
-	public void templateTestLexerValidBracketsOnly() throws ParseException{
+	public void templateTestLexerValidBracketsOnly2() throws ParseException{
 		String input = "()()";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateBracketLexer(input);
@@ -42,7 +42,7 @@ public class BracketLexerTest
 	}
 
 	@Test(expected=ParseException.class)
-	public void templateTestLexerInvalidLetter() throws ParseException{
+	public void templateTestLexerInvalidLetter2() throws ParseException{
 		String input = "()$()";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateBracketLexer(input);

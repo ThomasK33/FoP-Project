@@ -20,11 +20,11 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
  * @author Thomas Kosiewski
  *
  */
-public class ArithmeticLexerTest
+public class ArithmeticLexerTest extends TemplateIntegerArithmeticLexerTest
 {
 
 	@Test
-	public void templateTestLexerValidSimpleAddition() throws ParseException{
+	public void templateTestLexerValidSimpleAddition2() throws ParseException{
 		String input = "2 +   3";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateIntegerArithmeticLexer(input);
@@ -40,7 +40,7 @@ public class ArithmeticLexerTest
 	}
 
 	@Test
-	public void templateTestLexerValidPreOrderComplexExpression() throws ParseException{
+	public void templateTestLexerValidPreOrderComplexExpression2() throws ParseException{
 		String input = "(- (/ 50 2) 7)";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateIntegerArithmeticLexer(input);

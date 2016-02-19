@@ -18,11 +18,11 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
  * @author Thomas Kosiewski
  *
  */
-public class ArithmeticParserTest
+public class ArithmeticParserTest extends TemplateIntegerArithmeticParserTest
 {
 
 	@Test
-	public void templateTestMultiplication() throws ParseException{
+	public void templateTestMultiplication2() throws ParseException{
 		String input = "(* 10 4)";
 		
 		Factory factory = InstanceGenerator.instantiateFactory();
@@ -33,7 +33,7 @@ public class ArithmeticParserTest
 	}
 	
 	@Test
-	public void templateTestSimpleExpression() throws ParseException{
+	public void templateTestSimpleExpression2() throws ParseException{
 		String input = "(+ 1 (* 10 4))";
 
 		Factory factory = InstanceGenerator.instantiateFactory();
