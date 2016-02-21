@@ -46,8 +46,10 @@ public class CardioPlayerController extends ControllerImpl<GameModelImpl>
 		// TODO: rework this when framework.jar contains bug fix
 		if (!initiated)
 		{
-			cmd = new MoveCommand(-26, 0);
-//			cmd = new MoveCommand(26, 0);
+			// if is left
+				cmd = new MoveCommand(-26, 0);
+			// else
+				// cmd = new MoveCommand(26, 0);
 
 			initiated = true;
 		} 
