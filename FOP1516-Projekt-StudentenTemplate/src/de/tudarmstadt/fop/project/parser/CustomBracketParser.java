@@ -32,6 +32,7 @@ public class CustomBracketParser extends Parser implements BracketParser
 	@Override
 	public boolean isCorrectlyNested() throws ParseException
 	{	
+		boolean correct = true;
 		int counter = 0;
 		Token token = null;
 		do
@@ -43,18 +44,21 @@ public class CustomBracketParser extends Parser implements BracketParser
 			{
 				counter += 1;
 			}
-			if (token.is(RightBracketToken.class))
+			else if (token.is(RightBracketToken.class))
 			{
 				counter -= 1;
 			}
 			
-			if (counter <= 0 && lexer.hasNext())
+			else
 			{
 				throw new ParseException("Unexpected token " + this.la);
 			}
-		} while(lexer.hasNext());
+			
+			if (counter < 0 && lexer.hasNext())
+				correct = false;
+		} while(lexer.hasNext() && correct);
 		
-		return counter == 0;
+		return counter == 0 && correct;
 	}
 
 }

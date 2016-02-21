@@ -61,5 +61,18 @@ public class SoccerParserTest extends TemplateSoccerParserTest
 		Assert.assertEquals("SenseBodyInfo [time=0, viewIntensity=HIGH, viewMode=NORMAL, stamina=8000, effort=1, capacity=130600, speed=0, speedDir=0, headAngle=0, kickCount=0, dashCount=0, turnCount=0, sayCount=0, turnNeckCount=0, catchCount=0, moveCount=0, changeViewCount=0, armInfo=ArmInfo [movable=0, expires=0, dist=0, dir=0, count=0], tackleInfo=TackleInfo [expires=0, count=0], collisions=[NONE], foulInfo=FoulInfo [charged=0, card=NONE], focusInfo=FocusInfo [target=0, team=null, count=0]]",
 				info.toString());
 	}
+	
+	@Test
+	public void testInit() throws ParseException{
+		String input = "(init l 1 before_kick_off)";
+		
+		Factory factory = InstanceGenerator.instantiateFactory();
+		Lexer lexer = factory.instantiateExpressionLexer(input);
+		SoccerParser parser = factory.instantiateSoccerParser(lexer);
+		
+		SensorInformation info = parser.extractSensorInformation();
+
+		Assert.assertEquals("InitInfo [side=LEFT, nr=1, gameMode=BEFORE_KICK_OFF, team=null]", info.toString());
+	}
 
 }

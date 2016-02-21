@@ -16,11 +16,11 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
  * @author Thomas Kosiewski
  *
  */
-public class BracketParserTest
+public class BracketParserTest extends TemplateBracketParserTest
 {
 
 	@Test
-	public void templateTestBracketParseValidBracketExpression() throws ParseException{
+	public void templateTestBracketParseValidBracketExpression2() throws ParseException{
 		String input = "((()))";
 
 		Factory factory = InstanceGenerator.instantiateFactory();
@@ -30,8 +30,8 @@ public class BracketParserTest
 		Assert.assertTrue(parser.isCorrectlyNested());
 	}
 	
-	@Test(expected=ParseException.class)
-	public void templateTestBracketParseInvalidBracketNumber() throws ParseException{
+	@Test
+	public void templateTestBracketParseInvalidBracketNumber2() throws ParseException{
 		String input = "((())))))";
 
 		Factory factory = InstanceGenerator.instantiateFactory();
@@ -41,8 +41,8 @@ public class BracketParserTest
 		Assert.assertFalse(parser.isCorrectlyNested());
 	}
 	
-	@Test(expected=ParseException.class)
-	public void templateTestBracketParseInvalidNotOneExpression() throws ParseException{
+	@Test
+	public void templateTestBracketParseInvalidNotOneExpression2() throws ParseException{
 		String input = "(())()";
 
 		Factory factory = InstanceGenerator.instantiateFactory();

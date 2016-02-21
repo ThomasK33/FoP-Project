@@ -16,6 +16,7 @@ import de.tudarmstadt.fop.project.expression.ExpressionOperand;
 import de.tudarmstadt.fop.project.expression.IdentifierOperand;
 import de.tudarmstadt.fop.project.expression.Operand;
 import de.tudarmstadt.fop.project.expression.Operator;
+import de.tudarmstadt.fop.project.expression.PrimitiveOperand;
 import de.tudarmstadt.fop.project.expression.StringOperand;
 import de.tudarmstadt.fop.project.parser.Lexer;
 import de.tudarmstadt.fop.project.parser.ParseException;
@@ -32,7 +33,9 @@ import de.tudarmstadt.fop.project.soccer.sensor.SenseBodyInfo.Team;
 import de.tudarmstadt.fop.project.soccer.sensor.SenseBodyInfo.ViewIntensity;
 import de.tudarmstadt.fop.project.soccer.sensor.SenseBodyInfo.ViewMode;
 import de.tudarmstadt.fop.project.soccer.sensor.SensorInformation;
+import de.tudarmstadt.fop.project.soccer.sensor.GameMode;
 import de.tudarmstadt.fop.project.soccer.sensor.HearInfo;
+import de.tudarmstadt.fop.project.soccer.sensor.InitInfo;
 import de.tudarmstadt.fop.project.soccer.sensor.HearInfo.Sender;
 import de.tudarmstadt.fop.project.soccer.sensor.InitInfo.Side;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.Ball;
@@ -429,10 +432,19 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 						else if (sender.equals("self"))
 							hi.setSender(Sender.SELF);
 
+						
+						// TODO: merge this into one case
 						if (is(operandsList.get(2), StringOperand.class))
 						{
 							StringOperand SO = (StringOperand) operandsList.get(2);
 							String message = SO.getValue();
+
+							hi.setMessage(message);
+						}
+						else if (is(operandsList.get(2), IdentifierOperand.class))
+						{
+							IdentifierOperand ido = (IdentifierOperand) operandsList.get(2);
+							String message = ido.getValue();
 
 							hi.setMessage(message);
 						}
@@ -482,10 +494,19 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 								DecimalOperand playerNumber = (DecimalOperand) operandsList.get(3);
 								hi.setNr(playerNumber.asInt());
 
+								
+								// TODO: merge this into one case
 								if (is(operandsList.get(4), StringOperand.class))
 								{
 									StringOperand SO = (StringOperand) operandsList.get(4);
 									String message = SO.getValue();
+
+									hi.setMessage(message);
+								}
+								else if (is(operandsList.get(4), IdentifierOperand.class))
+								{
+									IdentifierOperand ido = (IdentifierOperand) operandsList.get(4);
+									String message = ido.getValue();
 
 									hi.setMessage(message);
 								}
@@ -510,7 +531,6 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 		}
 		else if (expr.getOperator().getIdentifier().equals("sense_body"))
 		{
-			// TODO: implement this
 			List<Operand> operandsList = expr.getOperands();
 			SenseBodyInfo sbi = new SenseBodyInfo();
 
@@ -824,6 +844,76 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 			}
 			si = sbi;
 		}
+		else if (expr.getOperator().getIdentifier().equals("init"))
+		{
+			InitInfo ii = new InitInfo();
+			
+			List<Operand> opList = expr.getOperands();
+			
+			if (opList.size() == 1 && is(opList.get(0), IdentifierOperand.class))
+			{
+				IdentifierOperand io = (IdentifierOperand) opList.get(0);
+				ii.setTeam(io.getValue());
+			}
+			else if (opList.size() == 2 && is(opList.get(0), IdentifierOperand.class) && is(opList.get(1), ExpressionOperand.class))
+			{
+				IdentifierOperand io = (IdentifierOperand) opList.get(0);
+				ii.setTeam(io.getValue());
+			}
+			else if (opList.size() == 3 && is(opList.get(0), IdentifierOperand.class) && is(opList.get(1), ExpressionOperand.class) && is(opList.get(2), PrimitiveOperand.class))
+			{
+				IdentifierOperand io = (IdentifierOperand) opList.get(0);
+				ii.setTeam(io.getValue());
+			}
+			else
+			{
+				boolean sideSet = false;
+				boolean unumSet = false;
+				boolean playModeSet = false;
+				
+				for (Operand op: opList)
+				{
+					if (is(op, IdentifierOperand.class))
+					{
+						IdentifierOperand io = (IdentifierOperand) op;
+						
+						String value = io.getValue();
+						
+						if (value.equals("l") && !sideSet)
+						{
+							ii.setSide(Side.LEFT);
+							sideSet = true;
+						}
+						else if (value.equals("r") && !sideSet)
+						{
+							ii.setSide(Side.RIGHT);
+							sideSet = true;
+						}
+						else if (contains(value) && !playModeSet)
+						{
+							ii.setGameMode(GameMode.valueOf(value.toUpperCase()));
+							playModeSet = true;
+						}
+						else 
+							throw new ParseException("Unexpected identifier, found this " + io.toString());
+					}
+					else if (is(op, DecimalOperand.class) && !unumSet)
+					{
+						DecimalOperand DO = (DecimalOperand) op;
+						
+						int nr = DO.asInt();
+						
+						ii.setNr(nr);
+						
+						unumSet = true;
+					}
+					else
+						throw new ParseException("Unexpected operand, found this " + op.toString());
+				}
+			}
+			
+			si = ii;
+		}
 		return si;
 	}
 
@@ -836,6 +926,23 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 	private boolean is(Object obj1, Class<?> cls)
 	{
 		return obj1.getClass().isAssignableFrom(cls);
+	}
+	
+	
+	// TODO: docs
+	/**
+	 * @param test
+	 * @return
+	 */
+	private boolean contains(String test) {
+
+	    for (GameMode c : GameMode.values()) {
+	        if (c.name().equals(test.toUpperCase())) {
+	            return true;
+	        }
+	    }
+
+	    return false;
 	}
 
 }
