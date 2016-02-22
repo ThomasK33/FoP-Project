@@ -21,5 +21,6 @@ public class Dribbler extends Player
 	public Dribbler(String teamName, int nr, String hostname, int port)
 	{
 		super(teamName, nr, hostname, port);
+		this.setController(new DribblerController("init"));
 	}
 }
