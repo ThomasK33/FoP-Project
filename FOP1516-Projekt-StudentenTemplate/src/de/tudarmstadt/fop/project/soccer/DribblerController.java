@@ -33,11 +33,11 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 	public DribblerController(String state) {
 		super(state);
 	}
-	
+
 	private boolean initiated = false;
 
 	int counter = 0;
-	
+
 	String cmdToCome = "dash";
 
 	// TODO: docs
@@ -48,12 +48,12 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 	 */
 	@Override
 	public Action doUpdate(GameModelImpl model) {
-		
+
 		Command cmd = null;
 
 		if (!initiated)
 		{
-				cmd = new MoveCommand(-20, 20);
+			cmd = new MoveCommand(-20, 20);
 
 			initiated = true;
 		} 
@@ -61,7 +61,8 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 		{
 			SeeInfo si = (SeeInfo) model.getLastSeeInfo();
 			
-			int ballFound = 0;
+			SoccerObjectInfo ball = null;
+			SoccerObjectInfo goal = null;
 
 			for (SoccerObjectInfo soi: si.getObjects())
 			{
@@ -69,70 +70,62 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 
 				if (so instanceof Ball)
 				{
-					ballFound++;
-					
-					if (soi.getDistance().compareTo(new BigDecimal("1.0")) <= 0)
-					{
-						if(soi.getSoccerObject() instanceof Ball){
-
-							int counter3 = 0;
-							
-							for (SoccerObjectInfo soi2: si.getObjects())
-							{
-								SoccerObject so2 = soi2.getSoccerObject();
-
-								if (so2 instanceof Goal){
-									
-									Goal goal = (Goal) so2;
-									
-									if(goal.getPosition() == Side.RIGHT){
-										counter3++;
-										
-										if(soi2.getDistance().compareTo(new BigDecimal("30.0")) <= 0)
-											cmd = new KickCommand(100, soi2.getDirection());
-										
-										else cmd = new KickCommand(3, soi2.getDirection());
-									}		
-								 }
-							}
-							
-							if(counter3==0){
-								cmd = new DashCommand(40);
-							}
-						} else {
-							cmd = new TurnCommand(10);
-						}
-					}
-					else if (cmdToCome == "turn")
-					{
-						int dir = soi.getDirection();
-
-						if (dir >= 5)
-							cmd = new TurnCommand(10);
-						else if (dir <= -5)
-							cmd = new TurnCommand(-10);
-
-						cmdToCome = "dash";
-
-					}
-					else if (cmdToCome == "dash")
-					{
-						cmd = new DashCommand(25);
-						
-						counter++;
-						
-						if (counter >= 2)
-						{	cmdToCome = "turn";
-						    counter = 0;
-						}
-						else
-							cmdToCome = "dash";
-
-					}				
+					ball = soi;			
+				}
+				else if (so instanceof Goal)
+				{
+					if (((Goal) so).getPosition() == Side.RIGHT)
+						goal = soi;
 				}
 			}
 			
-			if(ballFound==0){
+			if (null != ball)
+			{
+				if (ball.getDistance().compareTo(new BigDecimal("1.0")) <= 0)
+				{
+					if (null != goal)
+					{
+						if(((Goal) goal.getSoccerObject()).getPosition() == Side.RIGHT){
+							if(goal.getDistance().compareTo(new BigDecimal("30.0")) <= 0)
+								cmd = new KickCommand(100, goal.getDirection());
+
+							else cmd = new KickCommand(3, goal.getDirection());
+						}
+					}
+					else
+					{
+						cmd = new DashCommand(40);
+					}
+				}
+				else if (cmdToCome == "turn")
+				{
+					int dir = ball.getDirection();
+
+					if (dir >= 5)
+						cmd = new TurnCommand(10);
+					else if (dir <= -5)
+						cmd = new TurnCommand(-10);
+
+					cmdToCome = "dash";
+
+				}
+				else if (cmdToCome == "dash")
+				{
+					cmd = new DashCommand(25);
+
+					counter++;
+
+					if (counter >= 2)
+					{	cmdToCome = "turn";
+					counter = 0;
+					}
+					else
+						cmdToCome = "dash";
+
+				}	
+			}
+			else
+			{
 				cmd = new TurnCommand(10);
 			}
 		}			
