@@ -36,7 +36,6 @@ public class ArithmeticLexer extends BracketWithWsLexer
 		while (this.la == ' ' || this.la == '\t' || this.la == '\r' || this.la == '\n')
 			this.consume();
 		
-		// TODO: remove loop and write each case solo
 		if (this.la == '+' || this.la == '-' || this.la == '*' || this.la == '/')
 		{
 			ArithmeticOperatorToken.Type type = null;

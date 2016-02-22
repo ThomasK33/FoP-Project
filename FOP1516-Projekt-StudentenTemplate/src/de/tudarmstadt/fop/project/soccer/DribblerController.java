@@ -41,7 +41,6 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 	String cmdToCome = "dash";
 
 	// TODO: docs
-	// TODO: initialization problem
 	/**
 	 * @param model
 	 * @return
@@ -51,16 +50,16 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 
 		Command cmd = null;
 
-		if (!initiated)
+		if (!initiated && null != model.getOwnSide())
 		{
-			cmd = new MoveCommand(-20, 20);
+			cmd = new MoveCommand(-26, 0);
 
 			initiated = true;
 		} 
 		else if (null != model.getLastSeeInfo())
 		{
 			SeeInfo si = (SeeInfo) model.getLastSeeInfo();
-			
+
 			SoccerObjectInfo ball = null;
 			SoccerObjectInfo goal = null;
 
@@ -78,19 +77,17 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 						goal = soi;
 				}
 			}
-			
+
 			if (null != ball)
 			{
 				if (ball.getDistance().compareTo(new BigDecimal("1.0")) <= 0)
 				{
 					if (null != goal)
 					{
-						if(((Goal) goal.getSoccerObject()).getPosition() == Side.RIGHT){
-							if(goal.getDistance().compareTo(new BigDecimal("30.0")) <= 0)
-								cmd = new KickCommand(100, goal.getDirection());
+						if(goal.getDistance().compareTo(new BigDecimal("30.0")) <= 0)
+							cmd = new KickCommand(100, goal.getDirection());
 
-							else cmd = new KickCommand(3, goal.getDirection());
-						}
+						else cmd = new KickCommand(3, goal.getDirection());
 					}
 					else
 					{

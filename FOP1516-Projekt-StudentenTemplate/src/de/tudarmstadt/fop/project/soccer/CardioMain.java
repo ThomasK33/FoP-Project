@@ -15,6 +15,7 @@ import de.tudarmstadt.fop.project.soccer.entities.team.SinglePlayerTeam;
 public class CardioMain extends SinglePlayerTeam
 {
 
+	// TODO: docs
 	/**
 	 * @param name
 	 */
@@ -23,6 +24,7 @@ public class CardioMain extends SinglePlayerTeam
 		super(name);
 	}
 
+	// TODO: docs
 	/**
 	 * @param name
 	 * @param hostname
@@ -40,8 +42,7 @@ public class CardioMain extends SinglePlayerTeam
 	@Override
 	protected Player initPlayer(String hostname, int port)
 	{
-		CardioPlayer cp = new CardioPlayer(this.name, 1, hostname, port);
-		return cp;
+		return new CardioPlayer(this.name, 1, hostname, port);
 	}
 	
 	public static void main(String[] args)
@@ -53,7 +54,6 @@ public class CardioMain extends SinglePlayerTeam
 			cm.connect();
 		} catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -5,6 +5,7 @@ package de.tudarmstadt.fop.project.soccer;
 
 import de.tudarmstadt.fop.project.soccer.controller.ControllerImpl;
 import de.tudarmstadt.fop.project.soccer.model.GameModelImpl;
+import de.tudarmstadt.fop.project.soccer.sensor.InitInfo.Side;
 import de.tudarmstadt.fop.project.soccer.sensor.SeeInfo;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.FieldFlag;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.Flag.FlagHPos;
@@ -38,18 +39,18 @@ public class CardioPlayerController extends ControllerImpl<GameModelImpl>
 
 	private boolean aimed = false;
 
+	// TODO: docs
+	/* (non-Javadoc)
+	 * @see de.tudarmstadt.fop.project.soccer.controller.ControllerImpl#doUpdate(de.tudarmstadt.fop.project.soccer.model.GameModel)
+	 */
 	@Override
 	public Action doUpdate(GameModelImpl model)
 	{
 		Command cmd = null;
 
-		// TODO: rework this when framework.jar contains bug fix
-		if (!initiated)
+		if (!initiated && null != model.getOwnSide())
 		{
-			// if is left
-				cmd = new MoveCommand(-26, 0);
-			// else
-				// cmd = new MoveCommand(26, 0);
+			cmd = new MoveCommand(-26, 0);
 
 			initiated = true;
 		} 

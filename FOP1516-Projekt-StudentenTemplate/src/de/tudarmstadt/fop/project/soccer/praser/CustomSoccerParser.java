@@ -307,8 +307,10 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 							}
 							else if (id.equals("P"))
 							{
-								// TODO: check for updates: https://moodle.informatik.tu-darmstadt.de/mod/forum/discuss.php?d=40838
-								// unspecified player
+								PlayerInfo pi = new PlayerInfo();
+								pi.setNumber(0);
+								
+								so = pi;
 							}
 							else if (id.equals("B")) 
 							{

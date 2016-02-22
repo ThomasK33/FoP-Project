@@ -52,7 +52,6 @@ public class DribblerMain extends SinglePlayerTeam
 			dm.connect();
 		} catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
