@@ -5,7 +5,6 @@ package de.tudarmstadt.fop.project.soccer;
 
 import de.tudarmstadt.fop.project.soccer.controller.ControllerImpl;
 import de.tudarmstadt.fop.project.soccer.model.GameModelImpl;
-import de.tudarmstadt.fop.project.soccer.sensor.InitInfo.Side;
 import de.tudarmstadt.fop.project.soccer.sensor.SeeInfo;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.FieldFlag;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.Flag.FlagHPos;
@@ -26,6 +25,9 @@ import java.math.BigDecimal;
  */
 public class CardioPlayerController extends ControllerImpl<GameModelImpl>
 {
+	private boolean initiated = false;
+	private boolean aimed = false;
+	private int lastTime = -1;
 
 	/**
 	 * @param state
@@ -34,10 +36,6 @@ public class CardioPlayerController extends ControllerImpl<GameModelImpl>
 	{
 		super(state);
 	}
-
-	private boolean initiated = false;
-
-	private boolean aimed = false;
 
 	// TODO: docs
 	/* (non-Javadoc)
@@ -53,7 +51,11 @@ public class CardioPlayerController extends ControllerImpl<GameModelImpl>
 			cmd = new MoveCommand(-26, 0);
 
 			initiated = true;
-		} 
+		}
+		else if (this.lastTime == model.getCurrentTime())
+		{
+			// Same cycle as before --> either idle or do other things in the same cycle
+		}
 		else if (null != model.getLastSeeInfo())
 		{
 			SeeInfo si = (SeeInfo) model.getLastSeeInfo();
@@ -80,7 +82,7 @@ public class CardioPlayerController extends ControllerImpl<GameModelImpl>
 					{	
 						if (flag.gethPos() == FlagHPos.valueOf(cmds[1].toUpperCase()) && flag.getvPos() == FlagVPos.valueOf(cmds[2].toUpperCase()))
 						{
-							if (soi.getDistance().compareTo(new BigDecimal("2.0")) <= 0)
+							if (soi.getDistance().compareTo(new BigDecimal("1.5")) <= 0)
 							{
 								cmd = new TurnCommand(30);
 								
@@ -125,8 +127,13 @@ public class CardioPlayerController extends ControllerImpl<GameModelImpl>
 			{
 				cmd = new TurnCommand(10);
 			}
+			
+			if (null != cmd)
+			{
+				lastTime = model.getCurrentTime();
+			}
 		}
-
+		
 		return new Action(cmd);
 	}
 

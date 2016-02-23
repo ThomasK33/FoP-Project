@@ -25,7 +25,12 @@ import de.tudarmstadt.fop.project.soccer.sensor.obj.Goal;
  *
  */
 public class DribblerController extends ControllerImpl<GameModelImpl> {
-
+	
+	private boolean initiated = false;
+	private int counter = 0;
+	private String cmdToCome = "dash";
+	private int lastTime = -1;
+	
 	// TODO: docs
 	/**
 	 * @param state
@@ -33,12 +38,6 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 	public DribblerController(String state) {
 		super(state);
 	}
-
-	private boolean initiated = false;
-
-	int counter = 0;
-
-	String cmdToCome = "dash";
 
 	// TODO: docs
 	/**
@@ -55,7 +54,11 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 			cmd = new MoveCommand(-26, 0);
 
 			initiated = true;
-		} 
+		}
+		else if (model.getCurrentTime() == this.lastTime)
+		{
+			// Same cycle as before
+		}
 		else if (null != model.getLastSeeInfo())
 		{
 			SeeInfo si = (SeeInfo) model.getLastSeeInfo();
@@ -113,8 +116,9 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 					counter++;
 
 					if (counter >= 2)
-					{	cmdToCome = "turn";
-					counter = 0;
+					{	
+						cmdToCome = "turn";
+						counter = 0;
 					}
 					else
 						cmdToCome = "dash";
@@ -125,7 +129,13 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 			{
 				cmd = new TurnCommand(10);
 			}
+			
+			if (null != cmd)
+			{
+				this.lastTime = model.getCurrentTime();
+			}
 		}			
+		
 		return new Action(cmd);
 	}			
 
