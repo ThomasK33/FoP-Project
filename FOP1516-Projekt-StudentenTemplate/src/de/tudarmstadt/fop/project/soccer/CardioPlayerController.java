@@ -30,7 +30,7 @@ public class CardioPlayerController extends ControllerImpl<GameModelImpl>
 	private int lastTime = -1;
 
 	/**
-	 * @param state
+	 * @param state 
 	 */
 	public CardioPlayerController(String state)
 	{

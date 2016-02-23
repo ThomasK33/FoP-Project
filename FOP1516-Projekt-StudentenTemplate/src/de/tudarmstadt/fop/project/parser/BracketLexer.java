@@ -16,10 +16,8 @@ import de.tudarmstadt.fop.project.parser.tokens.RightBracketToken;
  */
 public class BracketLexer extends Lexer 
 {
-
-	// TODO: docs
 	/**
-	 * @param input
+	 * @param input input to be used 
 	 */
 	public BracketLexer(String input) 
 	{

@@ -15,7 +15,7 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @authot Veronika Kaletta 
  */
 public class BracketWithWsTest extends TemplateBracketWithWsTest
 {

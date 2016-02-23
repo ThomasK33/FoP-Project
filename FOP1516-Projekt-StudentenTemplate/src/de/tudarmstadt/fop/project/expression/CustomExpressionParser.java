@@ -19,9 +19,8 @@ import de.tudarmstadt.fop.project.parser.tokens.StringToken;
 public class CustomExpressionParser extends Parser implements ExpressionParser
 {
 
-	// TODO: docs
 	/**
-	 * @param lexer
+	 * @param lexer String to be lexed 
 	 */
 	public CustomExpressionParser(Lexer lexer)
 	{

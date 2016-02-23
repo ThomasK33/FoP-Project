@@ -11,12 +11,11 @@ import de.tudarmstadt.fop.project.soccer.entities.team.Player;
  */
 public class CardioPlayer extends Player
 {
-	// TODO: docs
 	/**
-	 * @param teamName
-	 * @param nr
-	 * @param hostname
-	 * @param port
+	 * @param teamName the name of the team 
+	 * @param nr the number of the player 
+	 * @param hostname the client's hostname 
+	 * @param port  the port name 
 	 */
 	public CardioPlayer(String teamName, int nr, String hostname, int port)
 	{

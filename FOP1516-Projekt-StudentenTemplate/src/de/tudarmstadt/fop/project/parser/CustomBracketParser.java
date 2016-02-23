@@ -17,9 +17,9 @@ import de.tudarmstadt.fop.project.parser.tokens.RightBracketToken;
  */
 public class CustomBracketParser extends Parser implements BracketParser
 {	
-	// TODO: docs
+	
 	/**
-	 * @param lexer
+	 * @param lexer String to be lexed 
 	 */
 	public CustomBracketParser(Lexer lexer)
 	{

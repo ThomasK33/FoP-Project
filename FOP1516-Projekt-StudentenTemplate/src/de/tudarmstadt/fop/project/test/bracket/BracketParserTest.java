@@ -14,7 +14,7 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta 
  */
 public class BracketParserTest extends TemplateBracketParserTest
 {
@@ -43,7 +43,7 @@ public class BracketParserTest extends TemplateBracketParserTest
 	
 	@Test
 	public void templateTestBracketParseInvalidNotOneExpression2() throws ParseException{
-		String input = "(())()";
+		String input = "(())()()(())";
 
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateBracketLexer(input);

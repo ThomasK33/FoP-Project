@@ -11,14 +11,13 @@ import de.tudarmstadt.fop.project.parser.tokens.IntegerToken;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class ArithmeticLexer extends BracketWithWsLexer
 {
 
-	// TODO: docs
 	/**
-	 * @param input
+	 * @param input to be used 
 	 */
 	public ArithmeticLexer(String input)
 	{

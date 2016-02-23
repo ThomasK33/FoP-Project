@@ -13,13 +13,13 @@ import de.tudarmstadt.fop.project.parser.tokens.RightBracketToken;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class CustomDecimalArithmeticParser extends Parser implements ArithmeticParser
 {
 
 	/**
-	 * @param lexer
+	 * @param lexer String to be lexed 
 	 */
 	public CustomDecimalArithmeticParser(Lexer lexer)
 	{

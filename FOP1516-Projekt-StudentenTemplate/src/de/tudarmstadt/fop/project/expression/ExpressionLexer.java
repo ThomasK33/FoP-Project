@@ -15,10 +15,8 @@ import de.tudarmstadt.fop.project.parser.tokens.StringToken;
  */
 public class ExpressionLexer extends DecimalArithmeticLexer
 {
-
-	// TODO: docs
 	/**
-	 * @param input
+	 * @param input input to be used 
 	 */
 	public ExpressionLexer(String input)
 	{

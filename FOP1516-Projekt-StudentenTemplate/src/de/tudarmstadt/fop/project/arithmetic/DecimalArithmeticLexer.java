@@ -11,14 +11,12 @@ import de.tudarmstadt.fop.project.parser.tokens.DecimalToken;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class DecimalArithmeticLexer extends ArithmeticLexer implements LookaheadLexer
 {
-
-	// TODO: docs
 	/**
-	 * @param input
+	 * @param input to be used 
 	 */
 	public DecimalArithmeticLexer(String input)
 	{

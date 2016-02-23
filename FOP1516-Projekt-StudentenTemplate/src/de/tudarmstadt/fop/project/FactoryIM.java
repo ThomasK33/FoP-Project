@@ -32,11 +32,6 @@ import de.tudarmstadt.fop.project.soccer.praser.CustomSoccerParser;
  */
 public class FactoryIM implements Factory
 {
-
-	// TODO: docs
-	/**
-	 * 
-	 */
 	public FactoryIM(){}
 
 	/* (non-Javadoc)

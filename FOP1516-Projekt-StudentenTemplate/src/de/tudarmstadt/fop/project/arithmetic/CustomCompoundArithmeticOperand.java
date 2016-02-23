@@ -18,7 +18,7 @@ public class CustomCompoundArithmeticOperand implements ArithmeticOperand
 
 	// TODO: docs
 	/**
-	 * 
+	 * @param expression 
 	 */
 	public CustomCompoundArithmeticOperand(ArithmeticExpression expression)
 	{

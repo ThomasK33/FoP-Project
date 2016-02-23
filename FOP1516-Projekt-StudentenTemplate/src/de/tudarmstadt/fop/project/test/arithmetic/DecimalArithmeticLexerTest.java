@@ -18,7 +18,7 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class DecimalArithmeticLexerTest extends TemplateDecimalArithmeticLexerTest
 {
@@ -45,16 +45,16 @@ public class DecimalArithmeticLexerTest extends TemplateDecimalArithmeticLexerTe
 	
 	@Test
 	public void templateTestLexerValidSimpleSubtraktion2() throws ParseException{
-		String input = "10 - -2";
+		String input = "-10 - 12";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateDecimalArithmeticLexer(input);
 		
 		Assert.assertTrue(lexer.hasNext());
-		Assert.assertEquals(new DecimalToken("10"), lexer.nextToken());
+		Assert.assertEquals(new DecimalToken("-10"), lexer.nextToken());
 		Assert.assertTrue(lexer.hasNext());
 		Assert.assertEquals(new ArithmeticOperatorToken(Type.MINUS), lexer.nextToken());
 		Assert.assertTrue(lexer.hasNext());
-		Assert.assertEquals(new DecimalToken(-2), lexer.nextToken());
+		Assert.assertEquals(new DecimalToken(12), lexer.nextToken());
 		
 		Assert.assertFalse(lexer.hasNext());
 	}

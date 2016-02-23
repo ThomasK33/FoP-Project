@@ -10,9 +10,8 @@ package de.tudarmstadt.fop.project.parser;
 public class BracketWithWsLexer extends BracketLexer
 {
 
-	//	TODO: docs
 	/**
-	 * @param input
+	 * @param input input to be used 
 	 */
 	public BracketWithWsLexer(String input)
 	{

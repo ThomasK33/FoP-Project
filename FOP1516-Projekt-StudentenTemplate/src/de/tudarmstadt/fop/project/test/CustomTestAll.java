@@ -19,7 +19,7 @@ import de.tudarmstadt.fop.project.test.soccer.parser.SoccerParserTest;
 
 /**
  * @author Thomas Kosiewski
- *
+ * 
  */
 
 @RunWith(Suite.class)

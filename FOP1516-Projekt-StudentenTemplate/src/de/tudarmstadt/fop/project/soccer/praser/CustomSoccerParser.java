@@ -64,9 +64,8 @@ import de.tudarmstadt.fop.project.soccer.sensor.obj.VirtualFlagTop;
 public class CustomSoccerParser extends CustomExpressionParser implements SoccerParser
 {
 
-	// TODO: docs
 	/**
-	 * @param lexer
+	 * @param lexer String to be lexed 
 	 */
 	public CustomSoccerParser(Lexer lexer)
 	{

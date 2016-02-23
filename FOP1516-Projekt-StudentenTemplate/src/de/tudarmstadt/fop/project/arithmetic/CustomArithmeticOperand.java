@@ -18,7 +18,7 @@ public class CustomArithmeticOperand implements ArithmeticOperand
 
 	// TODO: docs
 	/**
-	 * 
+	 * @param token 
 	 */
 	public CustomArithmeticOperand(IntegerToken token)
 	{

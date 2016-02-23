@@ -15,21 +15,21 @@ import de.tudarmstadt.fop.project.soccer.entities.team.SinglePlayerTeam;
 public class CardioMain extends SinglePlayerTeam
 {
 
-	// TODO: docs
+	
 	/**
-	 * @param name
+	 * @param name the name of the team 
+	 * 
 	 */
 	public CardioMain(String name)
 	{
 		super(name);
 	}
 
-	// TODO: docs
 	/**
-	 * @param name
-	 * @param hostname
-	 * @param playerPort
-	 * @param coachPort
+	 * @param name the name of the team 
+	 * @param hostname the name of the host 
+	 * @param playerPort the player port 
+	 * @param coachPort the coach port 
 	 */
 	public CardioMain(String name, String hostname, int playerPort, int coachPort)
 	{

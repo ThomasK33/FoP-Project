@@ -16,7 +16,7 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class BracketLexerTest extends TemplateBracketLexerTest
 {
@@ -34,7 +34,7 @@ public class BracketLexerTest extends TemplateBracketLexerTest
 		Assert.assertEquals(new LeftBracketToken(), lexer.nextToken());
 		Assert.assertTrue(lexer.hasNext());
 		Assert.assertEquals(new RightBracketToken(), lexer.nextToken());
-
+		
 		Assert.assertFalse(lexer.hasNext());
 		
 		Assert.assertEquals(new EofToken(), lexer.nextToken());

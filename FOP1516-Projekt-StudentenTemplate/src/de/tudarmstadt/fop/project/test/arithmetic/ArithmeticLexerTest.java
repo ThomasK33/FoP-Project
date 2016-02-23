@@ -18,19 +18,19 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class ArithmeticLexerTest extends TemplateIntegerArithmeticLexerTest
 {
 
 	@Test
 	public void templateTestLexerValidSimpleAddition2() throws ParseException{
-		String input = "2 +   3";
+		String input = "16 + 3";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateIntegerArithmeticLexer(input);
 
 		Assert.assertTrue(lexer.hasNext());
-		Assert.assertEquals(new IntegerToken(2), lexer.nextToken());
+		Assert.assertEquals(new IntegerToken(16), lexer.nextToken());
 		Assert.assertTrue(lexer.hasNext());
 		Assert.assertEquals(new ArithmeticOperatorToken(Type.PLUS), lexer.nextToken());
 		Assert.assertTrue(lexer.hasNext());
@@ -41,7 +41,7 @@ public class ArithmeticLexerTest extends TemplateIntegerArithmeticLexerTest
 
 	@Test
 	public void templateTestLexerValidPreOrderComplexExpression2() throws ParseException{
-		String input = "(- (/ 50 2) 7)";
+		String input = "(- (/ 90 3) 7)";
 		Factory factory = InstanceGenerator.instantiateFactory();
 		Lexer lexer = factory.instantiateIntegerArithmeticLexer(input);
 
@@ -54,9 +54,9 @@ public class ArithmeticLexerTest extends TemplateIntegerArithmeticLexerTest
 		Assert.assertTrue(lexer.hasNext());
 		Assert.assertEquals(new ArithmeticOperatorToken(Type.DIVISION), lexer.nextToken());
 		Assert.assertTrue(lexer.hasNext());
-		Assert.assertEquals(new IntegerToken(50), lexer.nextToken());
+		Assert.assertEquals(new IntegerToken(90), lexer.nextToken());
 		Assert.assertTrue(lexer.hasNext());
-		Assert.assertEquals(new IntegerToken(2), lexer.nextToken());
+		Assert.assertEquals(new IntegerToken(3), lexer.nextToken());
 		Assert.assertTrue(lexer.hasNext());
 		Assert.assertEquals(new RightBracketToken(), lexer.nextToken());
 		Assert.assertTrue(lexer.hasNext());

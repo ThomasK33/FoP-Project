@@ -16,18 +16,17 @@ public class DribblerMain extends SinglePlayerTeam
 {
 
 	/**
-	 * @param name
+	 * @param name the name of the team 
 	 */
 	public DribblerMain(String name)
 	{
 		super(name);
 	}
-
 	/**
-	 * @param name
-	 * @param hostname
-	 * @param playerPort
-	 * @param coachPort
+	 * @param name the name of the team 
+	 * @param hostname the hostname 
+	 * @param playerPort the player port 
+	 * @param coachPort the coach port 
 	 */
 	public DribblerMain(String name, String hostname, int playerPort, int coachPort)
 	{

@@ -15,7 +15,7 @@ import de.tudarmstadt.fop.project.test.InstanceGenerator;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta 
  */
 public class ExpressionParserTest extends TemplateExpressionParserTest
 {
