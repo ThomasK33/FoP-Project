@@ -15,9 +15,8 @@ public class CustomDecimalArithmeticOperand implements ArithmeticOperand
 {
 	private DecimalToken token;
 
-	// TODO: docs
 	/**
-	 * @param token 
+	 * @param token to be used
 	 */
 	public CustomDecimalArithmeticOperand(DecimalToken token)
 	{

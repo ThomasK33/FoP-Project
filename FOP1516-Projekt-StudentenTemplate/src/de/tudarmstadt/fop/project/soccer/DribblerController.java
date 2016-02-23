@@ -31,18 +31,19 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 	private String cmdToCome = "dash";
 	private int lastTime = -1;
 	
-	// TODO: docs
 	/**
-	 * @param state
+	 * @param state the controller state
 	 */
 	public DribblerController(String state) {
 		super(state);
 	}
 
-	// TODO: docs
 	/**
-	 * @param model
-	 * @return
+	 * Come up with a new {@link Action} (in particular: new controller state
+	 * and Command to issue) based on the given game model.
+	 * 
+	 * @param model the game model
+	 * @return the next controller action
 	 */
 	@Override
 	public Action doUpdate(GameModelImpl model) {
@@ -76,6 +77,8 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 				}
 				else if (so instanceof Goal)
 				{
+					// Shoot onto the right if you're left
+					// Shoot onto the left if you're right
 					if (((Goal) so).getPosition() == Side.RIGHT)
 						goal = soi;
 				}

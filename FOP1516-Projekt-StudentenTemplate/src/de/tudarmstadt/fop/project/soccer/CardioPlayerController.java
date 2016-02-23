@@ -30,14 +30,13 @@ public class CardioPlayerController extends ControllerImpl<GameModelImpl>
 	private int lastTime = -1;
 
 	/**
-	 * @param state 
+	 * @param state the controller state
 	 */
 	public CardioPlayerController(String state)
 	{
 		super(state);
 	}
 
-	// TODO: docs
 	/* (non-Javadoc)
 	 * @see de.tudarmstadt.fop.project.soccer.controller.ControllerImpl#doUpdate(de.tudarmstadt.fop.project.soccer.model.GameModel)
 	 */

@@ -610,10 +610,10 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 								throw new ParseException("Expected second argument for " + id + " to be a decimal, instead found this " + argLst.get(1).toString());
 
 							BigDecimal speed = ((DecimalOperand)argLst.get(0)).asDecimal();
-							BigDecimal angle =  ((DecimalOperand)argLst.get(1)).asDecimal();
+							int speedDir =  ((DecimalOperand)argLst.get(1)).asInt();
 
 							sbi.setSpeed(speed);
-							// TODO: find what to do with angle
+							sbi.setSpeedDir(speedDir);
 						}
 						else if (id.equals("head_angle") || id.equals("kick") || id.equals("dash") || id.equals("turn") || id.equals("say") || id.equals("turn_neck") || id.equals("catch") || id.equals("move") || id.equals("change_view"))
 						{
@@ -918,22 +918,21 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 		return si;
 	}
 
-	// TODO: docs
-	/**
-	 * @param obj1
-	 * @param obj2
-	 * @return
+	/** Checks if given object's class is assignable from given class
+	 * @param obj Object to be checked
+	 * @param cls Class to be checked against
+	 * @return true - class can be assigned to object
+	 * 			false - class cannot be assigned to object
 	 */
-	private boolean is(Object obj1, Class<?> cls)
+	private boolean is(Object obj, Class<?> cls)
 	{
-		return obj1.getClass().isAssignableFrom(cls);
+		return obj.getClass().isAssignableFrom(cls);
 	}
 	
-	
-	// TODO: docs
-	/**
-	 * @param test
-	 * @return
+	/** Checks if given string is included in GameMode enum
+	 * @param test String to be found
+	 * @return true - if given String can be resolved to an enum type
+	 * 			false - if given String cannot be resolved to an enum type
 	 */
 	private boolean contains(String test) {
 
