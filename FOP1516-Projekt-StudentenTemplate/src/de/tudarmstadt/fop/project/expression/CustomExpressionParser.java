@@ -52,21 +52,16 @@ public class CustomExpressionParser extends Parser implements ExpressionParser
 			
 			this.consume();
 			
-			// TODO: check this, seems very dirty too me. at least it works
-			
 			while (this.lexer.hasNext() && this.la.isNot(RightBracketToken.class))
 			{
 				
 				
 				// PrimitiveOperand
 				if (this.la.is(DecimalToken.class))
-//					expr.addOperand(new PrimitiveOperand<DecimalToken>(new DecimalToken(this.la.getText())){});
 					expr.addOperand(new DecimalOperand((DecimalToken) this.la));
 				else if (this.la.is(IdentifierToken.class))
-//					expr.addOperand(new PrimitiveOperand<IdentifierToken>(new IdentifierToken(this.la.getText())){});
 					expr.addOperand(new IdentifierOperand((IdentifierToken) this.la));
 				else if (this.la.is(StringToken.class))
-//					expr.addOperand(new PrimitiveOperand<StringToken>(new StringToken(this.la.getText())){});
 					expr.addOperand(new StringOperand((StringToken) this.la));
 				
 				// expressionOperand

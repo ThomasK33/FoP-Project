@@ -116,8 +116,6 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 							{
 								PlayerInfo player = new PlayerInfo();
 
-								// TODO: look for is kicking flag in NEWS_rcssserver
-
 								for (Operand op: expOpLst)
 								{
 									// Team name
@@ -130,12 +128,21 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 									else if (op.getClass().isAssignableFrom(IdentifierOperand.class))
 										player.setGoalie(((IdentifierOperand) op).getValue().equals("true") ? true : false);
 								}
+								
+								if (is(opList.get(opList.size() - 1), IdentifierOperand.class) && (((IdentifierOperand)opList.get(opList.size() - 1)).getValue().equals("t") || ((IdentifierOperand)opList.get(opList.size() - 1)).getValue().equals("k")))
+								{
+									boolean isKicking = ((IdentifierOperand)opList.get(opList.size() - 1)).getValue().equals("k");
+									player.setKicking(isKicking);
+									
+									opList.remove(opList.size() - 1);
+								}
 
 								so = player;
 							}
 							else if (id.equals("b"))
 							{
-								so = new Ball();
+//								so = new Ball();
+								so = Ball.INSTANCE;
 							}
 							else if (id.equals("g"))
 							{
@@ -159,9 +166,10 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 
 										int distance = ((DecimalOperand) expOpLst.get(2)).asInt();
 
-										// TODO: make this clear for every case
-										if (!is(expOpLst.get(0), IdentifierOperand.class) || !is(expOpLst.get(1), IdentifierOperand.class))
-											throw new ParseException("Expexted flag identifier, instead found this " + expOpLst.get(0).toString() + " " + expOpLst.get(1).toString());
+										if (!is(expOpLst.get(0), IdentifierOperand.class))
+											throw new ParseException("Expexted flag identifier, instead found this " + expOpLst.get(0).toString());
+										if (!is(expOpLst.get(1), IdentifierOperand.class))
+											throw new ParseException("Expexted flag identifier, instead found this " + expOpLst.get(1).toString());
 
 										String arg1 = ((IdentifierOperand) expOpLst.get(0)).getValue();
 										String arg2 = ((IdentifierOperand) expOpLst.get(1)).getValue();
@@ -200,10 +208,12 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 									// either penalty or goal flag
 									else
 									{
-										// TODO: make this clear for every case
-										if (!is(expOpLst.get(0), IdentifierOperand.class) || !is(expOpLst.get(1), IdentifierOperand.class) || !is(expOpLst.get(2), IdentifierOperand.class))
-											throw new ParseException("Expexted flag identifier, instead found this " + expOpLst.get(0).toString() + " " + expOpLst.get(1).toString() + " " + expOpLst.get(2).toString());
-
+										if (!is(expOpLst.get(0), IdentifierOperand.class))
+											throw new ParseException("Expexted flag identifier, instead found this " + expOpLst.get(0).toString());
+										if (!is(expOpLst.get(1), IdentifierOperand.class))
+											throw new ParseException("Expexted flag identifier, instead found this " + expOpLst.get(1).toString());
+										if (!is(expOpLst.get(2), IdentifierOperand.class))
+											throw new ParseException("Expexted flag identifier, instead found this " + expOpLst.get(2).toString());
 
 										String arg1 = ((IdentifierOperand) expOpLst.get(0)).getValue();
 										String arg2 = ((IdentifierOperand) expOpLst.get(1)).getValue();
@@ -313,7 +323,7 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 							}
 							else if (id.equals("B")) 
 							{
-								// unspecified ball
+								so = Ball.INSTANCE;
 							}
 							else if (id.equals("G"))
 							{
@@ -405,17 +415,33 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 
 			HearInfo hi = new HearInfo();
 
-			// TODO: merge both cases into one
-			if (operandsList.size() == 3)
+			if (operandsList.size() >= 3)
 			{
-				if (is(operandsList.get(0), DecimalOperand.class))
+				int pos = 0;
+				
+				if (is(operandsList.get(pos), DecimalOperand.class))
 				{
-					DecimalOperand DO = (DecimalOperand) operandsList.get(0);
+					DecimalOperand DO = (DecimalOperand) operandsList.get(pos);
 					hi.setTime(DO.asInt());
-
-					if (is(operandsList.get(1), IdentifierOperand.class))
+					
+					pos += 1;
+					
+					if (operandsList.size() > 3)
 					{
-						IdentifierOperand IO = (IdentifierOperand) operandsList.get(1);
+						if (is(operandsList.get(pos), DecimalOperand.class))
+						{
+							DecimalOperand direction = (DecimalOperand) operandsList.get(pos);
+							hi.setDirection(direction.asInt());
+						}
+						else
+							throw new ParseException("Expected decimal for direction, indead found this " + operandsList.get(pos).toString());
+						
+						pos += 1;
+					}
+
+					if (is(operandsList.get(pos), IdentifierOperand.class))
+					{
+						IdentifierOperand IO = (IdentifierOperand) operandsList.get(pos);
 						String sender = IO.getValue();
 
 						if (sender.equals("online_coach_left"))
@@ -432,100 +458,44 @@ public class CustomSoccerParser extends CustomExpressionParser implements Soccer
 							hi.setSender(Sender.OPP);
 						else if (sender.equals("self"))
 							hi.setSender(Sender.SELF);
-
 						
-						// TODO: merge this into one case
-						if (is(operandsList.get(2), StringOperand.class))
+						pos += 1;
+						
+						if (operandsList.size() > 3)
 						{
-							StringOperand SO = (StringOperand) operandsList.get(2);
-							String message = SO.getValue();
-
-							hi.setMessage(message);
-						}
-						else if (is(operandsList.get(2), IdentifierOperand.class))
-						{
-							IdentifierOperand ido = (IdentifierOperand) operandsList.get(2);
-							String message = ido.getValue();
-
-							hi.setMessage(message);
-						}
-						else
-							throw new ParseException("Expected string for message, instead found this " + operandsList.get(2).toString());
-					}
-					else
-						throw new ParseException("Expected identifier for sender, indead found this " + operandsList.get(1).toString());
-				}
-				else
-					throw new ParseException("Expected decimal for time, indead found this " + operandsList.get(0).toString());
-			}
-			else if (operandsList.size() > 3)
-			{
-				if (is(operandsList.get(0), DecimalOperand.class))
-				{
-					DecimalOperand DO = (DecimalOperand) operandsList.get(0);
-					hi.setTime(DO.asInt());
-
-					if (is(operandsList.get(1), DecimalOperand.class))
-					{
-						DecimalOperand direction = (DecimalOperand) operandsList.get(1);
-						hi.setDirection(direction.asInt());
-
-						if (is(operandsList.get(2), IdentifierOperand.class))
-						{
-							IdentifierOperand IO = (IdentifierOperand) operandsList.get(2);
-							String sender = IO.getValue();
-
-							if (sender.equals("online_coach_left"))
-								hi.setSender(Sender.COACH_L);
-							else if (sender.equals("online_coach_right"))
-								hi.setSender(Sender.COACH_R);
-							else if (sender.equals("coach"))
-								hi.setSender(Sender.COACH);
-							else if (sender.equals("referee"))
-								hi.setSender(Sender.REFEREE);
-							else if (sender.equals("our"))
-								hi.setSender(Sender.OUR);
-							else if (sender.equals("opp"))
-								hi.setSender(Sender.OPP);
-							else if (sender.equals("self"))
-								hi.setSender(Sender.SELF);
-
-							if (is(operandsList.get(3), DecimalOperand.class))
+							if (is(operandsList.get(pos), DecimalOperand.class))
 							{
-								DecimalOperand playerNumber = (DecimalOperand) operandsList.get(3);
+								DecimalOperand playerNumber = (DecimalOperand) operandsList.get(pos);
 								hi.setNr(playerNumber.asInt());
-
-								
-								// TODO: merge this into one case
-								if (is(operandsList.get(4), StringOperand.class))
-								{
-									StringOperand SO = (StringOperand) operandsList.get(4);
-									String message = SO.getValue();
-
-									hi.setMessage(message);
-								}
-								else if (is(operandsList.get(4), IdentifierOperand.class))
-								{
-									IdentifierOperand ido = (IdentifierOperand) operandsList.get(4);
-									String message = ido.getValue();
-
-									hi.setMessage(message);
-								}
-								else
-									throw new ParseException("Expected string for message, instead found this " + operandsList.get(4).toString());
 							}
 							else
-								throw new ParseException("Expected decimal for player number, instead found this " + operandsList.get(3).toString());
+								throw new ParseException("Expected decimal for player number, instead found this " + operandsList.get(pos).toString());
+							
+							pos += 1;
+						}
+						
+						if (is(operandsList.get(pos), StringOperand.class))
+						{
+							StringOperand po = (StringOperand) operandsList.get(pos);
+							String message = po.getValue();
 
+							hi.setMessage(message);
+						}
+						else if (is(operandsList.get(pos), IdentifierOperand.class))
+						{
+							IdentifierOperand po = (IdentifierOperand) operandsList.get(pos);
+							String message = po.getValue();
+
+							hi.setMessage(message);
 						}
 						else
-							throw new ParseException("Expected identifier for sender, indead found this " + operandsList.get(2).toString());
+							throw new ParseException("Expected string for message, instead found this " + operandsList.get(pos).toString());
 					}
 					else
-						throw new ParseException("Expected decimal for direction, indead found this " + operandsList.get(1).toString());
+						throw new ParseException("Expected identifier for sender, indead found this " + operandsList.get(pos).toString());
 				}
 				else
-					throw new ParseException("Expected decimal for time, indead found this " + operandsList.get(0).toString());
+					throw new ParseException("Expected decimal for time, indead found this " + operandsList.get(pos).toString());
 			}
 
 			si = hi;

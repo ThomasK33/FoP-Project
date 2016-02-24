@@ -86,7 +86,7 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 
 			if (null != ball)
 			{
-				if (ball.getDistance().compareTo(new BigDecimal("1.0")) <= 0)
+				if (ball.getDistance().compareTo(new BigDecimal("0.7")) <= 0)
 				{
 					if (null != goal)
 					{
