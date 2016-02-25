@@ -51,11 +51,7 @@ public class CardioPlayerController extends ControllerImpl<GameModelImpl>
 
 			initiated = true;
 		}
-		else if (this.lastTime == model.getCurrentTime())
-		{
-			// Same cycle as before --> either idle or do other things in the same cycle
-		}
-		else if (null != model.getLastSeeInfo())
+		else if (null != model.getLastSeeInfo() && this.lastTime != model.getCurrentTime())
 		{
 			SeeInfo si = (SeeInfo) model.getLastSeeInfo();
 			

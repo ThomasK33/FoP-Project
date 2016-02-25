@@ -56,11 +56,7 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 
 			initiated = true;
 		}
-		else if (model.getCurrentTime() == this.lastTime)
-		{
-			// Same cycle as before
-		}
-		else if (null != model.getLastSeeInfo())
+		else if (null != model.getLastSeeInfo() && model.getCurrentTime() != this.lastTime)
 		{
 			SeeInfo si = (SeeInfo) model.getLastSeeInfo();
 
@@ -100,7 +96,7 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 						cmd = new DashCommand(40);
 					}
 				}
-				else if (cmdToCome == "turn")
+				else if (cmdToCome.equals("turn"))
 				{
 					int dir = ball.getDirection();
 
@@ -112,7 +108,7 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 					cmdToCome = "dash";
 
 				}
-				else if (cmdToCome == "dash")
+				else if (cmdToCome.equals("dash"))
 				{
 					cmd = new DashCommand(25);
 
