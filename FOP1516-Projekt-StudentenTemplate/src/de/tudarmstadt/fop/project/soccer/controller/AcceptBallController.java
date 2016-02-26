@@ -3,11 +3,8 @@
  */
 package de.tudarmstadt.fop.project.soccer.controller;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Set;
-
 import de.tudarmstadt.fop.project.soccer.cmds.Command;
 import de.tudarmstadt.fop.project.soccer.cmds.MoveCommand;
 import de.tudarmstadt.fop.project.soccer.cmds.SayCommand;
@@ -32,9 +29,8 @@ public class AcceptBallController extends HierarchicalControllerImpl<de.tudarmst
 	private int lastTimeWait = -1;
 	private int slowdownTime = 20;
 
-	// TODO: docs
-	/**
-	 * @param config
+	/** Constructor for AcceptBallController 
+	 * @param config configuration for AcceptBallController
 	 */
 	public AcceptBallController(AcceptBallControllerConfig config)
 	{

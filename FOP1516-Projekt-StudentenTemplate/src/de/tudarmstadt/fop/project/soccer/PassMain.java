@@ -11,7 +11,7 @@ import de.tudarmstadt.fop.project.soccer.entities.team.TwoPlayerTeam;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class PassMain extends TwoPlayerTeam
 {

@@ -9,7 +9,7 @@ import de.tudarmstadt.fop.project.soccer.entities.team.Player;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class PassPlayer extends Player
 {

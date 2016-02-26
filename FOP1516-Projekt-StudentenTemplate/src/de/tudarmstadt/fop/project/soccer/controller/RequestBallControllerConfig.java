@@ -9,22 +9,22 @@ package de.tudarmstadt.fop.project.soccer.controller;
  */
 public class RequestBallControllerConfig extends PassControllerConfig
 {
-	// TODO: docs
-	/**
-	 * @param name
+	/** Constructor for RequestBallControllerConfig
+	 * @param name the player's team name
 	 */
 	public RequestBallControllerConfig(String name)
 	{
-		this.name = name;
+		this(name, false);
 	}
 	
 	public RequestBallControllerConfig()
 	{
+		this("", false);
 	}
 
-	/**
-	 * @param name
-	 * @param b
+	/** Constructor for RequestBallControllerConfig
+	 * @param name the player's team name
+	 * @param b the player's active state
 	 */
 	public RequestBallControllerConfig(String name, boolean b)
 	{

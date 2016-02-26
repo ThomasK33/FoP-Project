@@ -5,7 +5,6 @@ package de.tudarmstadt.fop.project.soccer.controller;
 
 import java.math.BigDecimal;
 
-import de.tudarmstadt.fop.project.soccer.PassPlayer;
 import de.tudarmstadt.fop.project.soccer.cmds.Command;
 import de.tudarmstadt.fop.project.soccer.cmds.DashCommand;
 import de.tudarmstadt.fop.project.soccer.cmds.KickCommand;
@@ -13,7 +12,6 @@ import de.tudarmstadt.fop.project.soccer.cmds.MoveCommand;
 import de.tudarmstadt.fop.project.soccer.cmds.TurnCommand;
 import de.tudarmstadt.fop.project.soccer.model.GameModelImpl;
 import de.tudarmstadt.fop.project.soccer.sensor.SeeInfo;
-import de.tudarmstadt.fop.project.soccer.sensor.SenseBodyInfo;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.Ball;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.PlayerInfo;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.SoccerObject;

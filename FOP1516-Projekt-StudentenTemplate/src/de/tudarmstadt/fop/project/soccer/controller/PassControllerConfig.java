@@ -7,29 +7,29 @@ import de.tudarmstadt.fop.project.soccer.controller.ControllerConfig;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class PassControllerConfig implements ControllerConfig
 {
-	// TODO: docs	
 	/**
-	 * 
+	 * Constructor for PassControllerConfig
 	 */
 	public PassControllerConfig()
 	{
+		this(false, "");
 	}
 	
 	/** Constructor for PassControllerConfig
-	 * @param active the players active state
+	 * @param active the player's active state
 	 */
 	public PassControllerConfig(boolean active)
 	{
-		this.setActive(active);
+		this(active, "");
 	}
 	
-	/**
-	 * @param b
-	 * @param name
+	/** Constructor for PassControllerConfig
+	 * @param active the player's active state
+	 * @param name the player's team name
 	 */
 	public PassControllerConfig(boolean active, String name)
 	{
@@ -37,9 +37,12 @@ public class PassControllerConfig implements ControllerConfig
 		this.setName(name);
 	}
 	
+	/** Constructor for PassControllerConfig
+	 * @param name the player's team name
+	 */
 	public PassControllerConfig(String name)
 	{
-		this.setName(name);
+		this(false, name);
 	}
 
 	protected int lastTime = -1;
@@ -64,31 +67,32 @@ public class PassControllerConfig implements ControllerConfig
 		this.active = active;
 	}
 
-	/**
-	 * @return the lastTime
+	/** Gets last ingame time stamp
+	 * @return the last time stamp ingame
 	 */
 	public int getLastTime()
 	{
 		return lastTime;
 	}
 
-	/**
-	 * @param lastTime the lastTime to set
+	/** Sets the ingame time stamp
+	 * @param lastTime the lastTime to be set
 	 */
 	public void setLastTime(int lastTime)
 	{
 		this.lastTime = lastTime;
 	}
 
-	/**
-	 * @return the initiated
+	/** Retrieves initiation state of corresponding controller
+	 * @return true - if initiated
+	 * 			false - if not initiated
 	 */
 	public boolean isInitiated()
 	{
 		return initiated;
 	}
 
-	/**
+	/** Sets initiation state of corresponding controller 
 	 * @param initiated the initiated to set
 	 */
 	public void setInitiated(boolean initiated)
@@ -96,16 +100,16 @@ public class PassControllerConfig implements ControllerConfig
 		this.initiated = initiated;
 	}
 
-	/**
-	 * @return the name
+	/**	Gets the player's team name
+	 * @return the team name
 	 */
 	public String getName()
 	{
 		return name;
 	}
 
-	/**
-	 * @param name the name to set
+	/** Sets the player's team name
+	 * @param the name to be set
 	 */
 	public void setName(String name)
 	{

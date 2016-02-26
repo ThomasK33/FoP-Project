@@ -5,16 +5,13 @@ package de.tudarmstadt.fop.project.soccer.controller;
 
 import de.tudarmstadt.fop.project.soccer.cmds.Command;
 import de.tudarmstadt.fop.project.soccer.cmds.CompositeCommand;
-import de.tudarmstadt.fop.project.soccer.cmds.DashCommand;
 import de.tudarmstadt.fop.project.soccer.cmds.KickCommand;
-import de.tudarmstadt.fop.project.soccer.cmds.MoveCommand;
 import de.tudarmstadt.fop.project.soccer.cmds.SayCommand;
 import de.tudarmstadt.fop.project.soccer.cmds.TurnCommand;
 import de.tudarmstadt.fop.project.soccer.model.GameModelImpl;
 import de.tudarmstadt.fop.project.soccer.sensor.HearInfo;
 import de.tudarmstadt.fop.project.soccer.sensor.SeeInfo;
 import de.tudarmstadt.fop.project.soccer.sensor.HearInfo.Sender;
-import de.tudarmstadt.fop.project.soccer.sensor.obj.Ball;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.PlayerInfo;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.SoccerObject;
 import de.tudarmstadt.fop.project.soccer.sensor.obj.SoccerObjectInfo;
@@ -27,8 +24,9 @@ public class RequestBallController extends HierarchicalControllerImpl<GameModelI
 {
 	private int lastTime = -1;
 	private String name = "";
-	/**
-	 * @param config
+	
+	/** Constructor for RequestBallController
+	 * @param config the controller's configuration
 	 */
 	public RequestBallController(RequestBallControllerConfig config)
 	{

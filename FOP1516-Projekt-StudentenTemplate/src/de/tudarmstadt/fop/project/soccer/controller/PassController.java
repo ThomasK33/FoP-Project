@@ -9,7 +9,7 @@ import de.tudarmstadt.fop.project.soccer.model.GameModelImpl;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class PassController extends HierarchicalControllerImpl<GameModelImpl, PassControllerConfig>
 {

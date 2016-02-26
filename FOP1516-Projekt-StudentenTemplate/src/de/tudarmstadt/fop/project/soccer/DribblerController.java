@@ -31,8 +31,8 @@ public class DribblerController extends ControllerImpl<GameModelImpl> {
 	private String cmdToCome = "dash";
 	private int lastTime = -1;
 	
-	/**
-	 * @param state the controller state
+	/** Constructor for DribblerController
+	 * @param state the controller's state
 	 */
 	public DribblerController(String state) {
 		super(state);

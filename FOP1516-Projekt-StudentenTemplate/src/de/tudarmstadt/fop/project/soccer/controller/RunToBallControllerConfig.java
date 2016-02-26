@@ -5,22 +5,24 @@ package de.tudarmstadt.fop.project.soccer.controller;
 
 /**
  * @author Thomas Kosiewski
- *
+ * @author Veronika Kaletta
  */
 public class RunToBallControllerConfig extends PassControllerConfig
 {
-	// TODO: docs
 	/**
-	 * @param name
+	 * Constructor for RunToBallControllerConfig
+	 */
+	public RunToBallControllerConfig()
+	{
+		this("");
+	}
+	
+	/** Constructor for RunToBallControllerConfig
+	 * @param name the player's team name
 	 */
 	public RunToBallControllerConfig(String name)
 	{
-//		this.setName(name);
 		super(name);
 	}
 	
-	public RunToBallControllerConfig()
-	{
-		super();
-	}
 }

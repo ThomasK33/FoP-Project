@@ -9,34 +9,16 @@ package de.tudarmstadt.fop.project.soccer.controller;
  */
 public class AcceptBallControllerConfig extends PassControllerConfig
 {
-	// TODO: docs
 	/**
-	 * 
+	 * Constructor for AcceptBallControllerConfig
 	 */
 	public AcceptBallControllerConfig()
 	{
 		super();
 	}
 
-	/**
-	 * @param active
-	 */
-	public AcceptBallControllerConfig(boolean active)
-	{
-		super(active);
-	}
-
-	/**
-	 * @param active
-	 * @param name
-	 */
-	public AcceptBallControllerConfig(boolean active, String name)
-	{
-		super(active, name);
-	}
-
-	/**
-	 * @param name
+	/** Constructor for AcceptBallControllerConfig
+	 * @param name the player's team name
 	 */
 	public AcceptBallControllerConfig(String name)
 	{
