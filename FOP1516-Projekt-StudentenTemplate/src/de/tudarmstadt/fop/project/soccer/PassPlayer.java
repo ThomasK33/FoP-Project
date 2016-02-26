@@ -30,7 +30,7 @@ public class PassPlayer extends Player
 	public void setConfig(PassControllerConfig pcc)
 	{
 		pcc.setName(this.teamName);
-		this.setController(new PassController(pcc));
+		this.setController(new PassController(pcc, this));
 	}
 
 }

@@ -36,6 +36,11 @@ public class PassControllerConfig implements ControllerConfig
 		this.setActive(active);
 		this.setName(name);
 	}
+	
+	public PassControllerConfig(String name)
+	{
+		this.setName(name);
+	}
 
 	protected int lastTime = -1;
 	protected boolean initiated = false;

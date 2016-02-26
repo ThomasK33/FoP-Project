@@ -15,10 +15,12 @@ public class RunToBallControllerConfig extends PassControllerConfig
 	 */
 	public RunToBallControllerConfig(String name)
 	{
-		this.setName(name);
+//		this.setName(name);
+		super(name);
 	}
 	
 	public RunToBallControllerConfig()
 	{
+		super();
 	}
 }

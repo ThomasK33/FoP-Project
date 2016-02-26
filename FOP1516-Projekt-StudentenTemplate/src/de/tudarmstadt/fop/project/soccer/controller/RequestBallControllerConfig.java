@@ -7,18 +7,18 @@ package de.tudarmstadt.fop.project.soccer.controller;
  * @author Thomas Kosiewski
  *
  */
-public class RequestBallAcceptControllerConfig extends PassControllerConfig
+public class RequestBallControllerConfig extends PassControllerConfig
 {
 	// TODO: docs
 	/**
 	 * @param name
 	 */
-	public RequestBallAcceptControllerConfig(String name)
+	public RequestBallControllerConfig(String name)
 	{
 		this.name = name;
 	}
 	
-	public RequestBallAcceptControllerConfig()
+	public RequestBallControllerConfig()
 	{
 	}
 
@@ -26,7 +26,7 @@ public class RequestBallAcceptControllerConfig extends PassControllerConfig
 	 * @param name
 	 * @param b
 	 */
-	public RequestBallAcceptControllerConfig(String name, boolean b)
+	public RequestBallControllerConfig(String name, boolean b)
 	{
 		this.name = name;
 		this.active = b;
